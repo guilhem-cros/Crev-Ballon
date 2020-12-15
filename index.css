@@ -1,0 +1,19 @@
+body, html {
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+}
+
+canvas{
+    vertical-align: middle;
+}
+
+@viewport {
+    orientation: landscape;
+  }
+
+  header{
+    margin:0;
+    padding:0;
+  }
