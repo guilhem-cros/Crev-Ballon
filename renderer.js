@@ -10,22 +10,26 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const img = new Image();
-img.src = './media/balloon (6).png'; //https://pixabay.com/fr/vectors/ballon-couleur-anniversaire-2514738/
+img.src = './media/nuage.jpg'; //https://pixabay.com/fr/vectors/ballon-couleur-anniversaire-2514738/
 
-const bkg = new Image();
-bkg.src = './media/background.jpg'; //https://pxhere.com/fr/photo/1416279
 
+//<a href='https://fr.freepik.com/vecteurs/fond'>Fond vecteur créé par articular - fr.freepik.com</a>
 var listeImage = ['./media/balloon.png','./media/balloon (2).png','./media/balloon (3).png','./media/balloon (4).png','./media/balloon (5).png','./media/balloon (6).png'];//https://pixabay.com/fr/vectors/ballon-couleur-anniversaire-2514738/
+
+var CouleurActuel = 0;
 var tableauBallon = new Array();
 
-const speed = canvas.width/300;
+var speed = canvas.width/600;
+const speedMax = canvas.width/550;
+let i = 0;
 let nbBallon = 0;
-let nbBallonMax = 6;
+let nbBallonMax = 7;
 let jeuEnCours = false;
 let isClicking = true;
 
+
 //dimension des ballons à dessiner dans le canvas
-let largeurBallon = canvas.height/8;
+let largeurBallon = (canvas.height+canvas.width)/17;
 let hauteurBallon = largeurBallon *1.25;
 
 let mx=0;//coordonne x du clic
@@ -43,26 +47,26 @@ class ballon{
         this.image = new Image();
         this.image.src = listeImage[getRandomInt(6)];
         this.x = getRandomInt(canvas.width-largeurBallon);
-        this.y = getRandomInt(canvas.height-hauteurBallon);      
+        this.y = canvas.height*(1+Math.random()/2);        
         do {
-            this.pasx = Math.random();
             this.pasy = Math.random();
-          } while (this.pasx==0||this.pasy==0||(this.pasx+this.pasy)<1);
+            this.pasx = Math.random();
+          } while (this.pasy<0.75||this.pasx<0.4);
         this.pasx = this.pasx * sens[getRandomInt(2)];
-        this.pasy = this.pasy * sens[getRandomInt(2)];
+        this.pasy = this.pasy * sens[1];
         this.click = false;
+        this.sortie = false;
     }
     avance(){
         //prochaine coordonne
         this.x = this.x+(this.pasx)*speed;
         this.y = this.y+(this.pasy)*speed;
-
         //si la prochaine coordonne depasse le canva, alors changement de direction
         if(this.x>(canvas.width-largeurBallon) || this.x<0){
             this.pasx = this.pasx * (-1);       
         }
-        if(this.y>(canvas.height-hauteurBallon)|| this.y<0){
-            this.pasy = this.pasy * (-1);
+        if(this.y<(-hauteurBallon)){
+            this.sortie = true;
         }
 
         //cas ou le ballon est cliqué
@@ -72,22 +76,24 @@ class ballon{
             }
         }
     }
-     
 }
+
+
 
 document.addEventListener('mousedown', e => {
     isClicking = true;
     mx = e.clientX;
     my = e.clientY;
-});
+    
+  });
   
 document.addEventListener('mouseup', e => {
     if (isClicking === true) {
       setTimeout(finClick,10);
     }
-});  
+  });  
 
-document.addEventListener('click',() => jeuEnCours = true);
+
 
 function finClick(){
     mx = 0;
@@ -114,26 +120,68 @@ function difference(a,b){
     return Math.abs(a - b);
 }
 
+function setBackground(){
+    if (speed<speedMax){
+        ctx.fillStyle = "#00a3d8";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }else{  
+        i=i+1;
+        if(i>2000){
+            i=i+2;
+        }
+        var gradient = ctx.createLinearGradient(0,i,0,0);
+        gradient.addColorStop(0,"#00a3d8");
+        gradient.addColorStop(0.70,"#7c80b0");
+        gradient.addColorStop(1,"#00090c");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+                     
+    }        
+}
+
+document.addEventListener('click',() => jeuEnCours = true);
+
 const render = () => {
-    ctx.drawImage(bkg,0,0,canvas.width,canvas.height);   
+    setBackground();
+     
     if (jeuEnCours){
+        if (speed<speedMax){
+            speed =speed*1.0001;
+        }
         if(nbBallon<nbBallonMax){
-            setTimeout(ajoutBallon,3000);
+            ajoutBallon();
             nbBallon = nbBallon+1;
         } 
         tableauBallon.forEach(element => {
-            if (element['click']==true){
+            if (element['click']==true||element['sortie']==true){
                 var pos = tableauBallon.indexOf(element);
                 disparitionBallon(pos);
             }
-            
+
+            //gestion collision
+            var recopieTableau = tableauBallon.slice();
+            recopieTableau.forEach(element2 => {
+                if(element2!=element){
+                    if (difference(element['x'],element2['x'])<largeurBallon/1.4){
+                        if(difference(element['y'],element2['y'])<hauteurBallon/1.4){
+                            if(element2['x']<element['x']){
+                                element['pasx'] = Math.abs(element['pasx']);
+                                   
+                            }else{
+                                element['pasx'] = Math.abs(element['pasx']) * (-1);
+                            }                                                                                                               
+                        }
+                    }
+                }         
+            });      
             element.avance();
-            ctx.drawImage(element['image'],element['x'],element['y'],largeurBallon,hauteurBallon);           
+            ctx.drawImage(element['image'],element['x'],element['y'],largeurBallon,hauteurBallon); 
         });
         
 
     }else{
-        ctx.drawImage(bkg,0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "#00a3d8";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.strokeText('Cliquer pour jouer',canvas.width/2,canvas.height/2);
         ctx.textAlign = 'center';
         ctx.font = "48px arial";
@@ -141,21 +189,3 @@ const render = () => {
     window.requestAnimationFrame(render);
 }
 img.onload = render;
-
-
-
-
-
-
-
-
-
-
- 
-
-  
-  
-  
-
-  
-
