@@ -75,6 +75,24 @@ class ballon{
                 this.click = true;
             }
         }
+        var recopieTableau = tableauBallon.slice();
+        recopieTableau.forEach(element2 => {
+            if(element2!=this){
+                if (difference(this.x,element2['x'])<largeurBallon/1.5){
+                    if(difference(this.y,element2['y'])<hauteurBallon/1.5){
+                        if(element2['x']<this.x){
+                            this.pasx = Math.abs(this.pasx)+ 0,1;
+                               
+                        }else{
+                            this.pasx = Math.abs(this.pasx) * (-1) -0,1;
+                        }                                                                                                               
+                    }
+                }
+            }         
+        });
+
+
+
     }
 }
 
@@ -126,13 +144,10 @@ function setBackground(){
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }else{  
         i=i+1;
-        if(i>2000){
-            i=i+2;
-        }
         var gradient = ctx.createLinearGradient(0,i,0,0);
         gradient.addColorStop(0,"#00a3d8");
-        gradient.addColorStop(0.70,"#7c80b0");
-        gradient.addColorStop(1,"#00090c");
+        gradient.addColorStop(0.30,"#7c80b0");
+        gradient.addColorStop(0.4,"#00090c");
         ctx.fillStyle = gradient;
         ctx.fillRect(0,0,canvas.width,canvas.height);
                      
@@ -158,22 +173,8 @@ const render = () => {
                 disparitionBallon(pos);
             }
 
-            //gestion collision
-            var recopieTableau = tableauBallon.slice();
-            recopieTableau.forEach(element2 => {
-                if(element2!=element){
-                    if (difference(element['x'],element2['x'])<largeurBallon/1.4){
-                        if(difference(element['y'],element2['y'])<hauteurBallon/1.4){
-                            if(element2['x']<element['x']){
-                                element['pasx'] = Math.abs(element['pasx']);
-                                   
-                            }else{
-                                element['pasx'] = Math.abs(element['pasx']) * (-1);
-                            }                                                                                                               
-                        }
-                    }
-                }         
-            });      
+            
+                  
             element.avance();
             ctx.drawImage(element['image'],element['x'],element['y'],largeurBallon,hauteurBallon); 
         });
