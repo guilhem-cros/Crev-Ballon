@@ -9,8 +9,6 @@ var ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const img = new Image();
-img.src = './media/nuage.jpg'; //https://pixabay.com/fr/vectors/ballon-couleur-anniversaire-2514738/
 
 
 //<a href='https://fr.freepik.com/vecteurs/fond'>Fond vecteur créé par articular - fr.freepik.com</a>
@@ -171,10 +169,7 @@ const render = () => {
             if (element['click']==true||element['sortie']==true){
                 var pos = tableauBallon.indexOf(element);
                 disparitionBallon(pos);
-            }
-
-            
-                  
+            }  
             element.avance();
             ctx.drawImage(element['image'],element['x'],element['y'],largeurBallon,hauteurBallon); 
         });
@@ -189,4 +184,4 @@ const render = () => {
     }
     window.requestAnimationFrame(render);
 }
-img.onload = render;
+window.onload = render;
