@@ -1,0 +1,52 @@
+body, html {
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+    background-color: #419FFF;
+    font-family: Chalkduster, fantasy;
+}
+
+@viewport {
+    orientation: landscape;
+  }
+
+.options{
+    border: solid #2A2A2E 3px;
+    border-radius: 10px;
+    font-size: 2em;
+}
+
+a{
+    text-decoration: none;
+    color : #2A2A2E;
+}
+
+.bouton{
+    font-size: 4em;
+    border: solid #2A2A2E 5px;
+    border-radius: 7px;
+    padding: 1%;
+    
+}
+
+#centre{
+    text-align: center;
+    margin-top: 14%;
+}
+
+#options{
+    text-align: right;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+button{
+    background-color: #419FFF;
+    border-radius: 7px;
+    border: solid #2A2A2E 3px;
+    font-size: 2em;
+    color: #2A2A2E;
+    font-family: Chalkduster, fantasy;
+}
+

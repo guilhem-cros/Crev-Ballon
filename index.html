@@ -8,15 +8,21 @@
     <meta name = "viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
     <meta name = "format-detection" content="telephone=no"/>
 
-    <link rel="stylesheet" href="index.css">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    
-    <canvas id = "canvas"></canvas>
-  
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
-    
-  </body>
+    <link rel="stylesheet" href="src/css/index.css">
+    <title>Menu</title>
+    <div id="options">
+        <p><a href="src/html/options.html" class="options">OPTIONS</a></p>
+    </div>
+    <div id=centre>
+        <p><a href="src/html/jeu.html" class="bouton" >JOUER</a></p>
+        <br><br>
+        <p><a href="src/html/stat.html" class="bouton">STATISTIQUES</a></p>
+        <br><br><br>
+        <div id="quit">
+            <p><button type="button" id="exit">Quitter</button></p>   
+            
+        </div>
+    </div>
+    <script src="src/js/quit.js"></script>
+</body>
 </html>
