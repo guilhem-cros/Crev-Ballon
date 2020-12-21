@@ -1,0 +1,194 @@
+<html><head>
+  <title>Jeu_enfant</title>
+  <style>
+    body {
+      background: #202028;
+      color: #fff;
+      font-family: sans-serif;
+      font-size: 2em;
+      text-align: center;
+    }
+    canvas {
+      border: solid .2em #fff;
+      height: 90vh;
+    }
+    #main{
+      display: none;
+    }
+    #newGame, #creditBtn, #backBtn, #statistiqueBtn, #optionBtn, #quitBtn, #musicBtn, #restartBtn{
+      text-align: center;
+      vertical-align: middle;
+      border: 2px solid goldenrod;
+      border-radius: 7px;
+      background-color: gold;
+      color: orangeRed;
+      font-size: 32px;
+      font-weight: bold;
+      font-family: "Courier New";
+      width: 10em;
+      margin: 50px auto;
+     }
+     #optionBtn{
+        width: 50px;
+        height: 50px;
+       position: relative;
+       top: -40%;
+       left: 40%;
+       text-align: center;
+       font-size: 20px;
+       font-family: "Courier New";
+       color: orangeRed;
+       border-radius: 50%;
+     }
+     /* #sonBtn{
+        width: 50px;
+        height: 50px;
+       position: relative;
+       top: 10%;
+       left: 10px;
+       text-align: center;
+       font-size: 20px;
+       font-family: "Courier New";
+       color: orangeRed;
+       border-radius: 50%;
+     } */
+
+    .circle-text {
+      font-family: "Courier New";        
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-size: 10px;
+      font-weight:normal;
+      }
+
+
+    #theHead{
+      margin: auto;
+      color: orange;
+      font-size: 2em;
+      font-family: "Courier New";
+      
+    }
+    #credits{
+      margin: auto;
+      color: orange;
+      font-size: 1em;
+      font-family: "Courier New";
+      display: none;
+      background-color: inherit;
+    }
+
+    #backBtn, #musicBtn, #restartBtn{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="theHead" style="display: block;">bienvenue au jeu de ballon</div>
+  <div id="newGame" onclick="runGame()" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" style="background-color: gold; display: block;">Jouer</div>
+  <div id="creditBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showCredits()" style="background-color: gold; display: block;">Réalisé par</div>
+  <div id="credits" style="display: none;">
+    Réalisé par<br>
+    <br>
+    Daniel RAJAONARIVELO<br>
+    Etienne TILLER<br>
+    Guilhem CROS<br>
+    Yi YANG
+  </div>
+  <div id="musicBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showMusic()" style="display: none;">musique</div>
+  <div id="restartBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="restart()" style="display: none;">relancer</div>
+  <div id="statistiqueBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showStatistique()" style="background-color: gold; display: block;">Statistique</div>
+  <div id="backBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="goBack()" style="display: none; background-color: gold;">retour</div>
+  <div id="quitBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="doExitGame()" style="background-color: gold; display: block;">Quitter</div>
+  <div id="optionBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showOption()" style="background-color: gold; display: block;">
+  <div class="circle-text">option</div>
+  <div id="score"></div>
+ 
+  </div>
+  <script>
+    var runGame = function(){
+      document.getElementById("theHead").style.display = "none";
+     document.getElementById("creditBtn").style.display = "none";
+     document.getElementById("statistiqueBtn").style.display = "none";
+     document.getElementById("newGame").style.display = "none";
+     document.getElementById("credits").style.display = "none";
+     document.getElementById("optionBtn").style.display = "none";
+     document.getElementById("backBtn").style.display = "block";
+     document.getElementById("quitBtn").style.display = "none";
+      
+      // partie pour lancer 
+      // playerReset();
+      // updateScore();
+      // update();
+    };
+   var showCredits = function(){
+     document.getElementById("theHead").style.display = "none";
+     document.getElementById("creditBtn").style.display = "none";
+     document.getElementById("statistiqueBtn").style.display = "none";
+     document.getElementById("newGame").style.display = "none";
+     document.getElementById("credits").style.display = "block";
+     document.getElementById("optionBtn").style.display = "none";
+     document.getElementById("backBtn").style.display = "block";
+     document.getElementById("quitBtn").style.display = "none";
+   };
+
+   var showStatistique = function(){
+    document.getElementById("theHead").style.display = "none";
+     document.getElementById("creditBtn").style.display = "none";
+     document.getElementById("statistiqueBtn").style.display = "none";
+     document.getElementById("newGame").style.display = "none";
+     document.getElementById("optionBtn").style.display = "none";
+     document.getElementById("backBtn").style.display = "block";
+     document.getElementById("quitBtn").style.display = "none";
+     document.getElementById("musicBtn").style.display = "none";
+     
+   }
+
+  var showOption = function(){
+    document.getElementById("theHead").style.display = "none";
+     document.getElementById("creditBtn").style.display = "none";
+     document.getElementById("statistiqueBtn").style.display = "none";
+     document.getElementById("newGame").style.display = "none";
+     document.getElementById("optionBtn").style.display = "none";
+     document.getElementById("backBtn").style.display = "block";
+     document.getElementById("quitBtn").style.display = "block";
+     document.getElementById("musicBtn").style.display = "block";
+     document.getElementById("restartBtn").style.display = "block";
+
+
+     
+    }
+    
+  var goBack = function(){
+    document.getElementById("backBtn").style.display = "none";
+    document.getElementById("credits").style.display = "none";
+    document.getElementById("theHead").style.display = "block";
+    document.getElementById("newGame").style.display = "block";
+    document.getElementById("statistiqueBtn").style.display = "block";
+    document.getElementById("creditBtn").style.display = "block";
+    document.getElementById("optionBtn").style.display = "block";
+    document.getElementById("quitBtn").style.display = "block";
+    document.getElementById("musicBtn").style.display = "none";
+    document.getElementById("restartBtn").style.display = "none";
+
+
+
+  }
+
+
+  var doExitGame = function(){
+    Application.Quit();
+  }
+
+  var restart = function(){
+    //reset all variables. 
+  }
+
+
+ 
+  </script>
+  
+
+</body></html>
