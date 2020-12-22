@@ -2,21 +2,90 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta name = "viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
-    <meta name = "format-detection" content="telephone=no"/>
+  <title>Jeu_enfant</title>
 
-    <link rel="stylesheet" href="index.css">
-    <title>Hello World!</title>
-  </head>
-  <body>
+  <link rel="stylesheet" href="src/css/index.css">
+</head>
+<body>
+  <div id="theHead" style="display: block;"><h1>Bienvenue sur <br>Crev'Ballon</h1></div>
+  <div id="newGame" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" style="background-color: gold; display: block;"><a href="src/html/game.html">Jouer</a></a></div>
+  <div id="statistiqueBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showStatistique()" style="background-color: gold; display: block;">Statistiques</div>
+  <div id="creditBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showCredits()" style="background-color: gold; display: block;">Crédits</div>
+  <div id="credits" style="display: none;">
+    <p>Réalisé par</p><br>
+    <br>
+    <p>Daniel RAJAONARIVELO</p>
+    <p>Etienne TILLER</p>
+    <p>Guilhem CROS</p>
+    <p>Yi YANG</p>
+  </div>
+  <div id="musicBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showMusic()" style="display: none;">Musique</div>
+  <div id="backBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="goBack()" style="display: none; background-color: gold;">Retour</div>
+  <div id="quitBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="doExitGame()" style="background-color: gold; display: block;">Quitter</div>
+  <div id="optionBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showOption()" style="background-color: gold; display: block;">
+  <div class="circle-text">Options</div>
+  <div id="score"></div>
+ 
+  </div>
+  <script>
     
-    <canvas id = "canvas"></canvas>
-  
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
+   var showCredits = function(){
+     document.getElementById("theHead").style.display = "none";
+     document.getElementById("creditBtn").style.display = "none";
+     document.getElementById("statistiqueBtn").style.display = "none";
+     document.getElementById("newGame").style.display = "none";
+     document.getElementById("credits").style.display = "block";
+     document.getElementById("optionBtn").style.display = "none";
+     document.getElementById("backBtn").style.display = "block";
+     document.getElementById("quitBtn").style.display = "none";
+   };
+
+   var showStatistique = function(){
+    document.getElementById("theHead").style.display = "none";
+     document.getElementById("creditBtn").style.display = "none";
+     document.getElementById("statistiqueBtn").style.display = "none";
+     document.getElementById("newGame").style.display = "none";
+     document.getElementById("optionBtn").style.display = "none";
+     document.getElementById("backBtn").style.display = "block";
+     document.getElementById("quitBtn").style.display = "none";
+     document.getElementById("musicBtn").style.display = "none";
+     
+   }
+
+  var showOption = function(){
+    document.getElementById("theHead").style.display = "none";
+     document.getElementById("creditBtn").style.display = "none";
+     document.getElementById("statistiqueBtn").style.display = "none";
+     document.getElementById("newGame").style.display = "none";
+     document.getElementById("optionBtn").style.display = "none";
+     document.getElementById("backBtn").style.display = "block";
+     document.getElementById("quitBtn").style.display = "block";
+     document.getElementById("musicBtn").style.display = "block";
+
+
+     
+    }
     
-  </body>
-</html>
+  var goBack = function(){
+    document.getElementById("backBtn").style.display = "none";
+    document.getElementById("credits").style.display = "none";
+    document.getElementById("theHead").style.display = "block";
+    document.getElementById("newGame").style.display = "block";
+    document.getElementById("statistiqueBtn").style.display = "block";
+    document.getElementById("creditBtn").style.display = "block";
+    document.getElementById("optionBtn").style.display = "block";
+    document.getElementById("quitBtn").style.display = "block";
+    document.getElementById("musicBtn").style.display = "none";
+
+  }
+
+  /* Censé être utilisé pour quitter le jeu (le require ne fonctionne pas)
+  const icp = require('electron').icpMain;
+
+    var doExitGame = function(){
+      icp.send('close-app');
+    }
+    */
+  </script>
+ 
+</body></html>
