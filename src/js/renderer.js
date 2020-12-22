@@ -11,24 +11,23 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 //<a href='https://fr.freepik.com/vecteurs/fond'>Fond vecteur créé par articular - fr.freepik.com</a>
 var listeImage = ['../../media/balloon.png','../../media/balloon (2).png','../../media/balloon (3).png','../../media/balloon (4).png','../../media/balloon (5).png','../../media/balloon (6).png'];//https://pixabay.com/fr/vectors/ballon-couleur-anniversaire-2514738/
-var bruitageBallon = new Audio('../../sons/eclatementBallon.wav');//https://lasonotheque.org/detail-1826-ballon-contre-mur-2.html
+var menuPause = ['../../media/menu2.png','../../media/menu3.png','../../media/menu4.png'];
+let indiceMenu = 0;
 var CouleurActuel = 0;
 var tableauBallon = new Array();
 var speed = canvas.width/600;
-const speedMax = canvas.width/550;
+var speedMax = canvas.width/550;
 let i = 0;
 let nbBallon = 0;
 let nbBallonMax = 7;
 let jeuEnCours = true;
 let boutonPause = new Image();
 boutonPause.src = '../../media/boutonPause.png';//<a href='https://fr.pngtree.com/so/pause'>pause png de fr.pngtree.com</a>
-let menu = new Image();
-menu.src = '../../media/menu2.png';//fait sur paint
 let isClicking = true;
 
 //dimension des ballons à dessiner dans le canvas
-let largeurBallon = (canvas.height+canvas.width)/17;
-let hauteurBallon = largeurBallon *1.25;
+var largeurBallon = (canvas.height+canvas.width)/12;
+var hauteurBallon = largeurBallon *1.25;
 
 let mx=0;//coordonne x du clic
 let my=0;//coordonne y du clic
@@ -49,17 +48,9 @@ document.addEventListener('touchstart', e => {
     my = e.touches[0].clientY;
   });
 
-//autoriser les glissement de doigts pour éclater les ballons
-document.addEventListener('touchmove', e => {
-    isClicking = true;
-    mx = e.touches[0].clientX;
-    my = e.touches[0].clientY;
-  });
-  
-  
 document.addEventListener('touchend', e => {
     if (isClicking == true) {
-      setTimeout(finClick,10);
+        setTimeout(finClick,10);
     }
   });  
 
@@ -113,6 +104,7 @@ class ballon{
         if(this.x<mx && mx<(this.x+largeurBallon)){
             if(this.y<my && my<(this.y+hauteurBallon)){
                 this.click = true;
+                var bruitageBallon = new Audio('../../sons/eclatementBallon.wav');//https://lasonotheque.org/detail-1826-ballon-contre-mur-2.html
                 bruitageBallon.play();
             }
         }
@@ -152,14 +144,20 @@ function enCours(boolean){
 }
 
 function actionMenue(){
+    var menu = new Image();
+    menu.src = menuPause[indiceMenu];
+    ctx.drawImage(menu,canvas.width/3,canvas.height/4,canvas.width/3,canvas.width/3);
     if(canvas.width/3<mx && mx<(canvas.width*2)/3){
         if((canvas.height/4+canvas.width/12)<my && my<(canvas.height/4+canvas.width/6)){
-            //Options a programmer.
+            my=0;
+            mx=0;
+            changementIndice();
+            setDifficulte();
         }
     }
     if(canvas.width/3<mx && mx<(canvas.width*2)/3){
         if((canvas.height/4+canvas.width/6)<my && my<(canvas.height/4+canvas.width/4)){
-            document.location.href="../html/select.html";
+            document.location.href="../../index.html";
         }
     }
     if(canvas.width/3<mx && mx<(canvas.width*2)/3){
@@ -167,6 +165,34 @@ function actionMenue(){
             document.location.href="../html/note.html"; 
         }
     }
+}
+
+function changementIndice(){
+    if (indiceMenu==2){
+        indiceMenu=0;
+    }else{
+        indiceMenu=indiceMenu+1;
+    }
+}
+
+function setDifficulte(){
+    if (indiceMenu==0){
+        speed = canvas.width/600;
+        speedMax = canvas.width/550;
+        largeurBallon = (canvas.height+canvas.width)/12;
+        hauteurBallon = largeurBallon *1.25;    
+    }else if (indiceMenu==1){
+        speed = canvas.width/500;
+        speedMax = canvas.width/450;
+         largeurBallon = (canvas.height+canvas.width)/14;
+         hauteurBallon = largeurBallon *1.25;
+    }else{
+        speed = canvas.width/350;
+        speedMax = canvas.width/300;
+         largeurBallon = (canvas.height+canvas.width)/16;
+         hauteurBallon = largeurBallon *1.25;
+    }
+
 }
 
 function ajoutBallon(){
@@ -214,9 +240,8 @@ const render = () => {
             if (jeuEnCours){
                 element.avance();
                 ctx.drawImage(boutonPause,canvas.width*0.9,0,canvas.width*0.1,canvas.width*0.1);
-            }else{
-                ctx.drawImage(menu,canvas.width/3,canvas.height/4,canvas.width/3,canvas.width/3);
-                actionMenue();
+            }else{             
+                actionMenue();               
             }
             
         });
