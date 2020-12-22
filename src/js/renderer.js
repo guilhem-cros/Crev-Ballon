@@ -23,6 +23,9 @@ let nbBallonMax = 7;
 let jeuEnCours = true;
 let boutonPause = new Image();
 boutonPause.src = '../../media/boutonPause.png';//<a href='https://fr.pngtree.com/so/pause'>pause png de fr.pngtree.com</a>
+let boutonSon = new Image();
+boutonSon.src = '../../media/soundOn.png';
+let son = true;
 let isClicking = true;
 
 //dimension des ballons à dessiner dans le canvas
@@ -104,8 +107,10 @@ class ballon{
         if(this.x<mx && mx<(this.x+largeurBallon)){
             if(this.y<my && my<(this.y+hauteurBallon)){
                 this.click = true;
-                var bruitageBallon = new Audio('../../sons/eclatementBallon.wav');//https://lasonotheque.org/detail-1826-ballon-contre-mur-2.html
-                bruitageBallon.play();
+                var bruitageBallon = new Audio('../../sons/eclatementBallon.wav');//https://lasonotheque.org/detail-1826-ballon-contre-mur-2.html https://lasonotheque.org/detail-1074-bulles-eclatent.html
+                if(son){
+                    bruitageBallon.play();
+                }
             }
         }
         var recopieTableau = tableauBallon.slice();
@@ -130,13 +135,13 @@ class ballon{
 
 function enCours(boolean){
     //si bouton pause est cliqué
-    if(canvas.width*0.9<mx && mx<canvas.width){
-        if(my<canvas.width*0.1){
+    if(canvas.width*0.92<mx && mx<canvas.width){ //le placement en largeur du "bouton" pause par rapport au canva
+        if(my<canvas.width*0.07){ //le placement en hauteur de ce meme bouton
             return false;
         }
     }
-    if(canvas.width/3<mx && mx<(canvas.width*2)/3){
-        if(canvas.height/4<my && my<(canvas.height/4+canvas.width/12)){
+    if(canvas.width/3<mx && mx<(canvas.width*2)/3){ //le placement en largeur du 'bouton' reprendre par rapport au canva
+        if(canvas.height/4<my && my<(canvas.height/4+canvas.width/12)){ //le placement en hauteur de ce meme bouton
             return true;
         }
     }
@@ -218,6 +223,23 @@ function setBackground(){
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
+function setSound(){
+    //si on clique sur l'icone son
+    if(canvas.width*0.85<mx && mx<canvas.width*0.92){ //le placement en largeur de l'icone son sur le canva
+        if(my<canvas.width*0.07){ //le placement en hauteur dde ce meme bouton
+            if(son){ //si son actif
+                son = false; //le son passe en non actif
+                boutonSon.src = '../../media/soundOff.png'; //l'icone devient l'icone de son non-actif
+            }
+            else{ //sinon (son innactif)
+                son = true; //le son passe en actif
+                boutonSon.src = '../../media/soundOn.png';//l'icone devient l'icone de son actif
+            }
+        }
+    }
+    ctx.drawImage(boutonSon, canvas.width*0.85,canvas.width*0.001,canvas.width*0.068,canvas.width*0.068); //on affiche l'icone correspondant sur le canve
+}
+
 //------rendu visuelle-è------
 
 const render = () => {
@@ -239,7 +261,8 @@ const render = () => {
 
             if (jeuEnCours){
                 element.avance();
-                ctx.drawImage(boutonPause,canvas.width*0.9,0,canvas.width*0.1,canvas.width*0.1);
+                setSound();
+                ctx.drawImage(boutonPause,canvas.width*0.92,0,canvas.width*0.08,canvas.width*0.07);   
             }else{             
                 actionMenue();               
             }
