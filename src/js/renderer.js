@@ -43,6 +43,7 @@ function finClick(){
   //--------touch et mouse event-----------
 
 document.addEventListener('touchstart', e => {
+    evt.preventDefault();
     isClicking = true;
     mx = e.touches[0].clientX;
     my = e.touches[0].clientY;
