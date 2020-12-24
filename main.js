@@ -8,12 +8,13 @@ function createWindow () {
     fullscreen: true,
     frame: false,
     webPreferences: {
-      preload: path.join(__dirname, 'src/js/preload.js')
+       nodeIntegration: true
     }
   })
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
+
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -39,12 +40,10 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
+// pour quitter l'appli (suite)
+ipcMain.on("quit",function(){
+  app.quit();
+})
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-
-/* Censé être utilisé pour quitter le jeu
-ipcMain.on('quit-game', function (){
-  app.exit();
-})
-*/
