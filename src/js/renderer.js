@@ -5,6 +5,8 @@
 // selectively enable features needed in the rendering
 
 // process.
+const electron = require("electron");
+const ipcRenderer = electron.ipcRenderer;
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -27,6 +29,7 @@ let boutonSon = new Image();
 boutonSon.src = '../../media/soundOn.png';
 let son = true;
 let isClicking = true;
+
 
 //dimension des ballons à dessiner dans le canvas
 var largeurBallon = (canvas.height+canvas.width)/12;
@@ -70,6 +73,7 @@ document.addEventListener('mouseup', e => {
     }
 }); 
 
+
 //------classe--------
 
 /*
@@ -91,21 +95,51 @@ class ballon{
         this.click = false;
         this.sortie = false;
     }
-    avance(){
-        //prochaine coordonne
-        this.x = this.x+(this.pasx)*speed;
-        this.y = this.y+(this.pasy)*speed;
 
-        //si la prochaine coordonne depasse le canva, alors changement de direction
+
+
+    update(){
+        this.avance();
+        this.setDirection();
+        this.setSortie();
+        this.eclaterBallon();
+    }
+
+    setDirection(){
+        this.rebondMur();
+        this.rebondBallon();
+    }
+
+    rebondMur(){
         if(this.x>(canvas.width-largeurBallon) || this.x<0){
             this.pasx = this.pasx * (-1);       
         }
+    }
+
+    rebondBallon(){
+        var recopieTableau = tableauBallon.slice();
+        recopieTableau.forEach(element2 => {
+        if(element2!=this){
+            if (difference(this.x,element2['x'])<largeurBallon/1.5){
+                if(difference(this.y,element2['y'])<hauteurBallon/1.5){
+                    if(element2['x']<this.x){
+                            this.pasx = Math.abs(this.pasx)+ 0,1;
+                               
+                    }else{
+                            this.pasx = Math.abs(this.pasx) * (-1) -0,1;
+                        }                                                                                                               
+                    }
+                }
+            }         
+        });
+    }
+    setSortie(){
         if(this.y<(-hauteurBallon)){
             this.sortie = true;
         }
-
-        //cas ou le ballon est cliqué
-        if(this.x<mx && mx<(this.x+largeurBallon)){
+    }
+    eclaterBallon(){
+         if(this.x<mx && mx<(this.x+largeurBallon)){
             if(this.y<my && my<(this.y+hauteurBallon)){
                 this.click = true;
                 var bruitageBallon = new Audio('../../sons/eclatementBallon.wav');//https://lasonotheque.org/detail-1826-ballon-contre-mur-2.html https://lasonotheque.org/detail-1074-bulles-eclatent.html
@@ -114,22 +148,14 @@ class ballon{
                 }
             }
         }
-        var recopieTableau = tableauBallon.slice();
-        recopieTableau.forEach(element2 => {
-            if(element2!=this){
-                if (difference(this.x,element2['x'])<largeurBallon/1.5){
-                    if(difference(this.y,element2['y'])<hauteurBallon/1.5){
-                        if(element2['x']<this.x){
-                            this.pasx = Math.abs(this.pasx)+ 0,1;
-                               
-                        }else{
-                            this.pasx = Math.abs(this.pasx) * (-1) -0,1;
-                        }                                                                                                               
-                    }
-                }
-            }         
-        });
     }
+
+    avance(){
+        this.x = this.x+(this.pasx)*speed;
+        this.y = this.y+(this.pasy)*speed;
+    }
+
+
 }
 
 //-----function et méthode-------
@@ -261,7 +287,7 @@ const render = () => {
             jeuEnCours = enCours(jeuEnCours);
 
             if (jeuEnCours){
-                element.avance();
+                element.update();
                 setSound();
                 ctx.drawImage(boutonPause,canvas.width*0.92,0,canvas.width*0.08,canvas.width*0.07);   
             }else{             

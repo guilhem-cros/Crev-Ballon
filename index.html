@@ -21,71 +21,13 @@
   </div>
   <div id="musicBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showMusic()" style="display: none;">Musique</div>
   <div id="backBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="goBack()" style="display: none; background-color: gold;">Retour</div>
-  <div id="quitBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="doExitGame()" style="background-color: gold; display: block;">Quitter</div>
+  <div id="quitBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" style="background-color: gold; display: block;">Quitter</div>
   <div id="optionBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="showOption()" style="background-color: gold; display: block;">
   <div class="circle-text">Options</div>
   <div id="score"></div>
  
   </div>
-  <script>
-    
-   var showCredits = function(){
-     document.getElementById("theHead").style.display = "none";
-     document.getElementById("creditBtn").style.display = "none";
-     document.getElementById("statistiqueBtn").style.display = "none";
-     document.getElementById("newGame").style.display = "none";
-     document.getElementById("credits").style.display = "block";
-     document.getElementById("optionBtn").style.display = "none";
-     document.getElementById("backBtn").style.display = "block";
-     document.getElementById("quitBtn").style.display = "none";
-   };
-
-   var showStatistique = function(){
-    document.getElementById("theHead").style.display = "none";
-     document.getElementById("creditBtn").style.display = "none";
-     document.getElementById("statistiqueBtn").style.display = "none";
-     document.getElementById("newGame").style.display = "none";
-     document.getElementById("optionBtn").style.display = "none";
-     document.getElementById("backBtn").style.display = "block";
-     document.getElementById("quitBtn").style.display = "none";
-     document.getElementById("musicBtn").style.display = "none";
-     
-   }
-
-  var showOption = function(){
-    document.getElementById("theHead").style.display = "none";
-     document.getElementById("creditBtn").style.display = "none";
-     document.getElementById("statistiqueBtn").style.display = "none";
-     document.getElementById("newGame").style.display = "none";
-     document.getElementById("optionBtn").style.display = "none";
-     document.getElementById("backBtn").style.display = "block";
-     document.getElementById("quitBtn").style.display = "block";
-     document.getElementById("musicBtn").style.display = "block";
-
-
-     
-    }
-    
-  var goBack = function(){
-    document.getElementById("backBtn").style.display = "none";
-    document.getElementById("credits").style.display = "none";
-    document.getElementById("theHead").style.display = "block";
-    document.getElementById("newGame").style.display = "block";
-    document.getElementById("statistiqueBtn").style.display = "block";
-    document.getElementById("creditBtn").style.display = "block";
-    document.getElementById("optionBtn").style.display = "block";
-    document.getElementById("quitBtn").style.display = "block";
-    document.getElementById("musicBtn").style.display = "none";
-
-  }
-
-  /* Censé être utilisé pour quitter le jeu (le require ne fonctionne pas)
-  const icp = require('electron').icpMain;
-
-    var doExitGame = function(){
-      icp.send('close-app');
-    }
-    */
+  <script>require("./src/js/index.js");
   </script>
  
 </body></html>
