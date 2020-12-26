@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
+var son = true;
 
 function createWindow () {
   // Create the browser window.
@@ -14,9 +15,25 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-  
 
+  //récupère l'info si musique ou pas
+  ipcMain.on('SON-ON',function(event){
+    son = true;
+  });
 
+  ipcMain.on('SON-OFF',function(event){
+    son = false;
+  });
+
+  //quand on start le jeu, on demande l'info au main s'il y a le son ou pas
+  ipcMain.on('SON',function(event){
+    if (son){
+      event.sender.send('SON-ON');
+    }
+    else {
+      event.sender.send('SON-OFF');
+    }
+  })
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }

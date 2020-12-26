@@ -8,7 +8,24 @@
       ipcRenderer.send("quit");
   });
   
+  function jouerMusiqueMenu(){
+    ipcRenderer.send('SON');
+
+    ipcRenderer.on('SON-OFF',function(event){
+      console.log('OFFmenu');
+      musiqueJoue = false;
+      musique.pause();
+    });
+
+    ipcRenderer.on('SON-ON',function(event){
+      console.log('ONmenu');
+      musiqueJoue = true;
+      musique.play();
+    });
+  }
+
   jouerMusiqueMenu();
+  
 
   document.getElementById('creditBtn').addEventListener("click",function(){
     document.getElementById("theHead").style.display = "none";
@@ -60,9 +77,11 @@
     document.getElementById("musicBtn").addEventListener("click",function(){
       if (musiqueJoue){
         musique.pause();
+        ipcRenderer.send('SON-OFF');
       }
       else {
         musique.play();
+        ipcRenderer.send('SON-ON');
       }
       musiqueJoue = !musiqueJoue;
     });
@@ -72,10 +91,3 @@
       musique.play();
     })
 
-
-  function jouerMusiqueMenu(){
-    if (musiqueJoue){
-      musique.play();
-    }
-  }
-  
