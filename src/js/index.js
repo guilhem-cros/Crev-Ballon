@@ -1,13 +1,14 @@
 	const electron = require("electron");
   const ipcRenderer = electron.ipcRenderer;
   var musique = new Audio('./sons/musiqueMenu.mp3'); // https://www.youtube.com/watch?v=-pIC6z654ho
+  var musiqueJoue = true;
 
   	//quitter l'appli
   	document.getElementById("quitBtn").addEventListener("click",function(){
       ipcRenderer.send("quit");
-	});
-     //jouer musique
-    musique.play();
+  });
+  
+  jouerMusiqueMenu();
 
   document.getElementById('creditBtn').addEventListener("click",function(){
     document.getElementById("theHead").style.display = "none";
@@ -55,16 +56,26 @@
       document.getElementById("musicBtn").style.display = "none";
   });
 
+    //Enlever ou remettre la musique  
+    document.getElementById("musicBtn").addEventListener("click",function(){
+      if (musiqueJoue){
+        musique.pause();
+      }
+      else {
+        musique.play();
+      }
+      musiqueJoue = !musiqueJoue;
+    });
 
-  /*function jouerMusiqueMenu(){
-    var musiqueDejaJoue = false;
-    musique.play();
-    musique.on
-      
-    }, interval);
-    musiqueDejaJoue = true;
-   /* while (musiqueDejaJoue){
-      setTimeout(175000,musique.play);
+    //Quand la musique est terminée, elle se relance
+    musique.addEventListener('ended',function(){
+      musique.play();
+    })
+
+
+  function jouerMusiqueMenu(){
+    if (musiqueJoue){
+      musique.play();
     }
-    */
+  }
   
