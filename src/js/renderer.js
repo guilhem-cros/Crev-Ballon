@@ -29,6 +29,7 @@ let boutonSon = new Image();
 boutonSon.src = '../../media/soundOn.png';
 let son = true;
 let isClicking = true;
+var musique = new Audio('../../sons/musiqueJeu.mp3'); // https://www.youtube.com/watch?v=n2oTA5JSk80&list=PLzCxunOM5WFLNCSF0UEHZqFJJlmdeL71S&index=5
 
 
 //dimension des ballons à dessiner dans le canvas
@@ -72,7 +73,19 @@ document.addEventListener('mouseup', e => {
       setTimeout(finClick,10);
     }
 }); 
+    ipcRenderer.send('SON');
 
+    ipcRenderer.on('SON-ON',function(event){
+        console.log("sonON");
+        son = true; //le son passe en actif
+        boutonSon.src = '../../media/soundOn.png';//l'icone devient l'icone de son actif
+    });
+
+    ipcRenderer.on('SON-OFF',function(event){
+        console.log("sonOFF");
+        son = false; //le son passe en non actif
+        boutonSon.src = '../../media/soundOff.png'; //l'icone devient l'icone de son non-actif
+    });
 
 //------classe--------
 
@@ -189,6 +202,12 @@ function actionMenue(){
     }
     if(canvas.width/3<mx && mx<(canvas.width*2)/3){
         if((canvas.height/4+canvas.width/6)<my && my<(canvas.height/4+canvas.width/4)){
+            if (son){
+                ipcRenderer.send('SON-ON');
+            }
+            else {
+                ipcRenderer.send('SON-OFF');
+            }
             document.location.href="../../index.html";
         }
     }
@@ -267,9 +286,27 @@ function setSound(){
     ctx.drawImage(boutonSon, canvas.width*0.85,canvas.width*0.001,canvas.width*0.068,canvas.width*0.068); //on affiche l'icone correspondant sur le canve
 }
 
+
+   //Quand la musique est terminée, elle se relance
+    musique.addEventListener('ended',function(){
+        musique.play();
+    })
+
+
+function jouerMusiqueJeu(){
+    if (son){
+        musique.play();
+    }
+    else {
+        musique.pause();
+    }
+}
+
+
 //------rendu visuelle-è------
 
 const render = () => {
+    jouerMusiqueJeu();
     setBackground();
         if (speed<speedMax){
             speed =speed*1.0001;
