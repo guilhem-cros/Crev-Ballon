@@ -1,5 +1,4 @@
-	const electron = require("electron");
-  const ipcRenderer = electron.ipcRenderer;
+  const {BrowserWindow, ipcRenderer} = require('electron')
   var musique = new Audio('./sons/musiqueMenu.mp3'); // https://www.youtube.com/watch?v=-pIC6z654ho
   var musiqueJoue = true;
 
@@ -36,6 +35,7 @@
     document.getElementById("optionBtn").style.display = "none";
     document.getElementById("backBtn").style.display = "block";
     document.getElementById("quitBtn").style.display = "none";
+    document.getElementById("creerBtn").style.display = "none";
   });
   
 
@@ -48,6 +48,7 @@
      document.getElementById("backBtn").style.display = "block";
      document.getElementById("quitBtn").style.display = "none";
      document.getElementById("musicBtn").style.display = "none";
+     document.getElementById("creerBtn").style.display = "none";
    });
 
    document.getElementById('optionBtn').addEventListener("click",function(){
@@ -59,6 +60,7 @@
       document.getElementById("backBtn").style.display = "block";
       document.getElementById("quitBtn").style.display = "block";
       document.getElementById("musicBtn").style.display = "block";
+      document.getElementById("creerBtn").style.display = "block";
     });
     
     document.getElementById('backBtn').addEventListener("click",function(){
@@ -71,6 +73,7 @@
       document.getElementById("optionBtn").style.display = "block";
       document.getElementById("quitBtn").style.display = "block";
       document.getElementById("musicBtn").style.display = "none";
+      document.getElementById("creerBtn").style.display = "none";
   });
 
     //Enlever ou remettre la musique  
@@ -89,5 +92,4 @@
     //Quand la musique est terminée, elle se relance
     musique.addEventListener('ended',function(){
       musique.play();
-    })
-
+    });

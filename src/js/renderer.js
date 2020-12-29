@@ -213,7 +213,7 @@ function actionMenue(){
     }
     if(canvas.width/3<mx && mx<(canvas.width*2)/3){
         if((canvas.height/4+canvas.width/4)<my && my<(canvas.height/4+canvas.width/3)){
-            document.location.href="../html/note.html"; 
+            document.location.href="./note.html"; 
         }
     }
 }

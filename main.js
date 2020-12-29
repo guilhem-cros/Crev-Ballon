@@ -15,7 +15,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-
+  mainWindow.openDevTools();
   //récupère l'info si musique ou pas
   ipcMain.on('SON-ON',function(event){
     son = true;
@@ -33,6 +33,14 @@ function createWindow () {
     else {
       event.sender.send('SON-OFF');
     }
+  })
+
+  ipcMain.on('Selectionner',function(){
+    mainWindow.loadFile('src/html/selection.html');
+  })
+
+  ipcMain.on('retour-menu',function(){
+    mainWindow.loadFile('index.html');
   })
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
