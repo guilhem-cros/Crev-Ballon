@@ -37,19 +37,6 @@
     document.getElementById("quitBtn").style.display = "none";
     document.getElementById("creerBtn").style.display = "none";
   });
-  
-
-  document.getElementById('statistiqueBtn').addEventListener("click",function(){
-    document.getElementById("theHead").style.display = "none";
-     document.getElementById("creditBtn").style.display = "none";
-     document.getElementById("statistiqueBtn").style.display = "none";
-     document.getElementById("newGame").style.display = "none";
-     document.getElementById("optionBtn").style.display = "none";
-     document.getElementById("backBtn").style.display = "block";
-     document.getElementById("quitBtn").style.display = "none";
-     document.getElementById("musicBtn").style.display = "none";
-     document.getElementById("creerBtn").style.display = "none";
-   });
 
    document.getElementById('optionBtn').addEventListener("click",function(){
       document.getElementById("theHead").style.display = "none";

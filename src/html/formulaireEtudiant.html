@@ -3,15 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <title>Jeu_enfant</title>
+        <link rel="stylesheet" href="../css/form.css">
     </head>
     <body>
-        <fieldset id="formulaire">
-            <label for="nom">Nom :</label>
-            <input type="text" name="nom" id="nom" required minlength="2">
-            <label for="prenom">Prenom :</label>
-            <input type="text" name="prenom" id="prenom" required minlength="2">
-            <button id="creer">Creer</button>
-        </fieldset>
+        <h1>Nouveau Joueur</h1>
+        <div id="formulaire">
+            <div id="form1">
+                <label for="nom">Nom :</label>
+                <input type="text" name="nom" id="nom">
+            </div>
+            <div id="form2">
+                <label for="prenom">Prenom :</label>
+                <input type="text" name="prenom" id="prenom">
+            </div>
+            <div id="form3">
+                <button id="creer" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'">Enregistrer</button>
+            </div>
+        </div>
+        <div id="backBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'"  style="display: block; background-color: gold;">Retour</div>
         <script src="../js/creerEtudiant.js">
         </script>
  
