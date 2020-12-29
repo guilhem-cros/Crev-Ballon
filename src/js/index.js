@@ -7,16 +7,16 @@
       ipcRenderer.send("quit");
   });
   
-  function jouerMusiqueMenu(){
-    ipcRenderer.send('SON');
+  function jouerMusiqueMenu(){ //gestion du son de l'appli
+    ipcRenderer.send('SON'); //envoie du message vers le main
 
-    ipcRenderer.on('SON-OFF',function(event){
+    ipcRenderer.on('SON-OFF',function(event){ // si reception de ce message (envoyé pas le main)
       console.log('OFFmenu');
       musiqueJoue = false;
       musique.pause();
     });
 
-    ipcRenderer.on('SON-ON',function(event){
+    ipcRenderer.on('SON-ON',function(event){ //si reception de ce message 
       console.log('ONmenu');
       musiqueJoue = true;
       musique.play();
@@ -26,7 +26,7 @@
   jouerMusiqueMenu();
   
 
-  document.getElementById('creditBtn').addEventListener("click",function(){
+  document.getElementById('creditBtn').addEventListener("click",function(){ //si appuie sur le bouton crédits
     document.getElementById("theHead").style.display = "none";
     document.getElementById("creditBtn").style.display = "none";
     document.getElementById("statistiqueBtn").style.display = "none";
@@ -38,7 +38,7 @@
     document.getElementById("creerBtn").style.display = "none";
   });
 
-   document.getElementById('optionBtn').addEventListener("click",function(){
+   document.getElementById('optionBtn').addEventListener("click",function(){ //si appuie sur le bouton "Options"
       document.getElementById("theHead").style.display = "none";
       document.getElementById("creditBtn").style.display = "none";
       document.getElementById("statistiqueBtn").style.display = "none";
@@ -50,7 +50,7 @@
       document.getElementById("creerBtn").style.display = "block";
     });
     
-    document.getElementById('backBtn').addEventListener("click",function(){
+    document.getElementById('backBtn').addEventListener("click",function(){ //si appuie sur le bouton "Retour"
       document.getElementById("backBtn").style.display = "none";
       document.getElementById("credits").style.display = "none";
       document.getElementById("theHead").style.display = "block";

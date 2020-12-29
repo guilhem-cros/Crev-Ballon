@@ -1,6 +1,5 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
-const path = require('path')
 var son = true;
 
 function createWindow () {
@@ -35,12 +34,12 @@ function createWindow () {
     }
   })
 
-  ipcMain.on('Selectionner',function(){
-    mainWindow.loadFile('src/html/selection.html');
+  ipcMain.on('Selectionner',function(){ //si reception de ce message par l'ipcMain depuis l'envoie d'un ipcRenderer
+    mainWindow.loadFile('src/html/selection.html'); //la fenetre affiché devient selection.html
   })
 
   ipcMain.on('retour-menu',function(){
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile('index.html');//la fenetre devient index.html
   })
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
