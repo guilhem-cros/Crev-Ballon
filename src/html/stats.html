@@ -14,12 +14,16 @@
         </div>
         <div id="listEtudiant">
         </div>
-        <button id="supprimer" style="display:none;">Supprimer</button>
-        <button id="supprimerAll" style="display:block;">Supprimer tous les joueurs</button>
-        <div id="rep" style="display:none;">
-            <p >Voulez vous vraiment supprimer tous les joueurs ?</p>
-        <button id="oui">Oui</button>
-        <button id="annuler">Annuler</button>
+        <br>
+        <div class="static">
+            <button id="supprimer" style="display:none;" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'">Supprimer ce joueur</button>
+            <button id="supprimerAll" style="display:block;" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'">Tout supprimer</button>        
+            <div id="rep" style="display:none;">
+                <p >Supprimer tous les joueurs ?</p>
+                <button id="oui" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'">Supprimer</button>
+                
+                <button id="annuler" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'">Annuler</button>
+            </div>
         </div>
         <div id="backBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'"  style="display: block; background-color: gold;">Retour</div>
         <script src="../js/stats.js">
