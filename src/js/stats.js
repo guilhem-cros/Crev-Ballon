@@ -17,7 +17,11 @@ function actualiser(){
     listEtudiant.sort(compare);
     var i = 0;
     for(etudiant of listEtudiant){ //pour tous les joueurs enregistrés : on affiche leurs données
-        chaine = chaine + "<div class=\"eleve\" id=\"" + i + "\">" + etudiant.nom + " " + etudiant.prenom + " <div class=\"notes\">" + etudiant.listNotes +  "</div></div>";
+        chaine = chaine + "<div class=\"eleve\" id=\"" + i + "\">" + etudiant.nom + " " + etudiant.prenom + " <div class=\"notes\">";
+        for(note in etudiant.listNotes){
+            chaine = chaine +  "<img src=\"../../media/note" + etudiant.listNotes[note] + ".png\" height=\"50px\" width=\"50px\"></img>";
+        }
+        chaine = chaine + "</div>" + "</div>";
         i++;
     }
 
@@ -42,9 +46,6 @@ function actualiser(){
     }
 
         
-    document.getElementById('backBtn').addEventListener("click",function(){ //si appuie sur retour
-        ipcRenderer.send("retour-menu"); //envoie du message vers le main afin d'activer la fonction liée
-    });
 
 
 }
@@ -91,12 +92,9 @@ boutonSuppAll.addEventListener("click",function(event){
 
     });
 
-
-
-
-
-
-
+    document.getElementById('backBtn').addEventListener("click",function(){ //si appuie sur retour
+        ipcRenderer.send("retour-menu"); //envoie du message vers le main afin d'activer la fonction liée
+    });
 
 
 function compare(a, b) {

@@ -57,6 +57,7 @@ body {
 .notes{
   text-align: right;
   flex: 1;
+  display : inline;
 }
 
   #backBtn{
