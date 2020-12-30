@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 var son = true;
+var idEleve;
 
 function createWindow () {
   // Create the browser window.
@@ -14,7 +15,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-  mainWindow.openDevTools();
+
   //récupère l'info si musique ou pas
   ipcMain.on('SON-ON',function(event){
     son = true;
@@ -35,8 +36,21 @@ function createWindow () {
   })
 
   ipcMain.on('Selectionner',function(){ //si reception de ce message par l'ipcMain depuis l'envoie d'un ipcRenderer
-    mainWindow.loadFile('src/html/selection.html'); //la fenetre affiché devient selection.html
+  mainWindow.loadFile('src/html/selection.html'); //la fenetre affiché devient selection.html
+})
+
+  ipcMain.on("jouer",function(event){
+    mainWindow.loadFile('src/html/game.html'); //affiche le jeu
   })
+
+  ipcMain.on("ask-id",function(event){
+    event.sender.send("id",idEleve);
+  })
+  
+  ipcMain.on("idEleve",function(event,args){
+    idEleve = args[0];
+  })
+ 
 
   ipcMain.on('retour-menu',function(){
     mainWindow.loadFile('index.html');//la fenetre devient index.html

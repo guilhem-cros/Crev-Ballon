@@ -3,14 +3,22 @@
     <head>
         <meta charset="UTF-8">
         <title>Jeu_enfant</title>
-        <link rel="stylesheet" href="../css/selection.css">
+        <link rel="stylesheet" href="../css/stats.css">
     </head>
     <body>
-        <h1>Selection du joueur</h1>
-
-
+        <h1>Choisir Etudiant</h1>
+        <br>
+        <div id="box">
+            <div id="one">Joueurs</div> 
+            <div id="two">Dernières notes</div>
+        </div>
+        <div id="listEtudiant">
+        </div>
+        <button id="jouer" style="display:none;">Jouer</button>
+        <div id="creerBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" style="display: block;"><a href="formulaireEtudiant.html">Creer</a></div>
         <div id="backBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'"  style="display: block; background-color: gold;">Retour</div>
-        <script src="../js/choisirEtudiant.js"></script>
-    
+        <script src="../js/choisirEtudiant.js">
+        </script>
     </body>
-    </html>
+</html>
+
