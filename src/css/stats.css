@@ -63,17 +63,17 @@ body {
   #backBtn{
     text-align: center;
     position: fixed;
-    top: 90%;
+    top: 87%;
     left: 1%;
     border: 2px solid goldenrod;
     border-radius: 7px;
     background-color: gold;
     color: orangeRed;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: bold;
     font-family: "Courier New";
     height: 1.2em;
-    width: 5em;
+    width: 4em;
     margin: 20px auto;
   }
 
@@ -91,7 +91,7 @@ body {
     width: 6em;
   }
 
-  p{
+  #question{
     font-size: 0.8em;
     line-height: 1em;
     width: 7em;
@@ -99,7 +99,8 @@ body {
     background-color: orange;
     border-radius: 5px;
     margin-left: 1%;
-    margin-bottom: 0;
+    margin-bottom: 10px;
+    margin-top: 15px;
   }
 
   #creerBtn{
@@ -133,10 +134,15 @@ body {
 
   #oui, #annuler{
     flex:1;
-    line-height: 0.8em;
-    height: 1em;
+    line-height: 1em;
+    height: 1.5em;
+    width: 6em;
     margin-right: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  #supprimer{
+    height: 2.3em;
   }
 
 
