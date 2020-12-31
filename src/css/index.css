@@ -83,4 +83,11 @@ a{
     display: none;
   }
 
+  #ref{
+    font-size: 20px;
+    line-height: 1em;
+    text-align: left;
+    margin: 1%;
+  }
+
   
