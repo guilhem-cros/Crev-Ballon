@@ -4,7 +4,7 @@ body {
     font-family: sans-serif;
     font-size: 2em;
     text-align: center;
-    margin-top: 3em;;
+    margin-top: 1.6em;;
   }
   canvas {
     border: solid .2em #fff;
@@ -30,13 +30,14 @@ a{
     border-radius: 7px;
     background-color: gold;
     color: orangeRed;
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
     font-family: "Courier New";
     height: 1.2em;
     width: 12em;
-    margin: 50px auto;
+    margin: 40px auto;
    }
+
    #optionBtn{
     width: 100px;
     height: 100px;
