@@ -11,7 +11,6 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-//<a href='https://fr.freepik.com/vecteurs/fond'>Fond vecteur créé par articular - fr.freepik.com</a>
 var listeImage = ['../../media/balloon.png','../../media/balloon (2).png','../../media/balloon (3).png','../../media/balloon (4).png','../../media/balloon (5).png','../../media/balloon (6).png'];//https://pixabay.com/fr/vectors/ballon-couleur-anniversaire-2514738/
 var menuPause = ['../../media/menu2.png','../../media/menu3.png','../../media/menu4.png'];
 let indiceMenu = 0;
@@ -24,7 +23,7 @@ let nbBallon = 0;
 let nbBallonMax = 7;
 let jeuEnCours = true;
 let boutonPause = new Image();
-boutonPause.src = '../../media/boutonPause.png';//<a href='https://fr.pngtree.com/so/pause'>pause png de fr.pngtree.com</a>
+boutonPause.src = '../../media/boutonPause.png';
 let boutonSon = new Image();
 boutonSon.src = '../../media/soundOn.png';
 let son = true;
@@ -155,7 +154,7 @@ class ballon{
          if(this.x<mx && mx<(this.x+largeurBallon)){
             if(this.y<my && my<(this.y+hauteurBallon)){
                 this.click = true;
-                var bruitageBallon = new Audio('../../sons/eclatementBallon.wav');//https://lasonotheque.org/detail-1826-ballon-contre-mur-2.html https://lasonotheque.org/detail-1074-bulles-eclatent.html
+                var bruitageBallon = new Audio('../../sons/eclatementBallon.wav');
                 if(son){
                     bruitageBallon.play();
                 }

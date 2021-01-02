@@ -60,7 +60,6 @@
     document.getElementById("optionBtn").style.display = "none";
     document.getElementById("backBtn").style.display = "block";
     document.getElementById("quitBtn").style.display = "none";
-    document.getElementById("creerBtn").style.display = "none";
   });
 
    document.getElementById('optionBtn').addEventListener("click",function(){ //si appuie sur le bouton "Options"
@@ -72,7 +71,6 @@
       document.getElementById("backBtn").style.display = "block";
       document.getElementById("quitBtn").style.display = "block";
       document.getElementById("musicBtn").style.display = "block";
-      document.getElementById("creerBtn").style.display = "block";
     });
     
     document.getElementById('backBtn').addEventListener("click",function(){ //si appuie sur le bouton "Retour"
@@ -85,7 +83,6 @@
       document.getElementById("optionBtn").style.display = "block";
       document.getElementById("quitBtn").style.display = "block";
       document.getElementById("musicBtn").style.display = "none";
-      document.getElementById("creerBtn").style.display = "none";
   });
 
     //Enlever ou remettre la musique  

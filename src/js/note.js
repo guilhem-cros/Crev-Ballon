@@ -71,12 +71,12 @@ suivant.addEventListener("click",function(event){
     });
 
     if (note == 1){
-        superNote.style.height = "700px";
+        superNote.style.height = "500px";
         superNote.style.width = "auto";
         encouragementNote.style.display = "none";
     }
     else {
-        encouragementNote.style.height = "700px";
+        encouragementNote.style.height = "500px";
         encouragementNote.style.width = "auto";
         superNote.style.display = "none"
     }
