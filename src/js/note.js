@@ -1,4 +1,5 @@
 const Etudiant = require('../js/etudiant.js'); // <--- Classe Etudiant
+var musique = new Audio('../../sons/musiqueMenu.mp3'); // https://www.youtube.com/watch?v=xN2TVpsIo34&list=WL&index=3
 const {ipcRenderer} = require("electron");
 var fs = require("fs"); //<--- FileSystem commande
 const { listenerCount } = require('process');
@@ -11,6 +12,30 @@ var superNote = document.getElementById("super");
 var encouragementNote = document.getElementById("encouragement");
 var lienmenu = document.getElementById("lienmenu");
 
+
+jouerMusiqueMenu();
+
+function jouerMusiqueMenu(){ //gestion du son de l'appli
+ipcRenderer.send('SON'); //envoie du message vers le main
+
+ipcRenderer.on('SON-OFF',function(event){ // si reception de ce message (envoyé pas le main)
+  console.log('OFFmenu');
+  son = false;
+  musique.pause();
+});
+
+ipcRenderer.on('SON-ON',function(event){ //si reception de ce message 
+  console.log('ONmenu');
+  son = true;
+  musique.play();
+});
+
+    
+ipcRenderer.send('ask-Musique');
+ipcRenderer.on("musique",function(event,args){
+    musique.currentTime = args;
+});
+}
 
 superNote.addEventListener("click",function(event){
     note = 1;
@@ -58,6 +83,18 @@ suivant.addEventListener("click",function(event){
     lienmenu.style.display = "block";
     suivant.style.display = "none";
 });
+
+
+
+document.getElementById("lienmenu").addEventListener("click",function(event){
+    if (son){
+      ipcRenderer.send("SON-ON");
+  }
+  else{
+      ipcRenderer.send("SON-OFF");
+  }
+    ipcRenderer.send("setMusique",musique.currentTime);
+  });
 
 
 function compare(a, b) {

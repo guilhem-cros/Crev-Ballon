@@ -1,30 +1,55 @@
   const {BrowserWindow, ipcRenderer} = require('electron')
-  var musique = new Audio('./sons/musiqueMenu.mp3'); // https://www.youtube.com/watch?v=-pIC6z654ho
-  var musiqueJoue = true;
+  var musique = new Audio('./sons/musiqueMenu.mp3'); // https://www.youtube.com/watch?v=xN2TVpsIo34&list=WL&index=3
+  var son = true;
 
   	//quitter l'appli
   	document.getElementById("quitBtn").addEventListener("click",function(){
       ipcRenderer.send("quit");
   });
-  
-  function jouerMusiqueMenu(){ //gestion du son de l'appli
-    ipcRenderer.send('SON'); //envoie du message vers le main
-
-    ipcRenderer.on('SON-OFF',function(event){ // si reception de ce message (envoyé pas le main)
-      console.log('OFFmenu');
-      musiqueJoue = false;
-      musique.pause();
-    });
-
-    ipcRenderer.on('SON-ON',function(event){ //si reception de ce message 
-      console.log('ONmenu');
-      musiqueJoue = true;
-      musique.play();
-    });
-  }
 
   jouerMusiqueMenu();
+
+  function jouerMusiqueMenu(){ //gestion du son de l'appli
+  ipcRenderer.send('SON'); //envoie du message vers le main
   
+  ipcRenderer.on('SON-OFF',function(event){ // si reception de ce message (envoyé pas le main)
+    console.log('OFFmenu');
+    son = false;
+    musique.pause();
+  });
+  
+  ipcRenderer.on('SON-ON',function(event){ //si reception de ce message 
+    console.log('ONmenu');
+    son = true;
+    musique.play();
+  });
+
+      
+  ipcRenderer.send('ask-Musique');
+  ipcRenderer.on("musique",function(event,args){
+      musique.currentTime = args;
+  });
+  }
+
+  document.getElementById("statistiqueBtn").addEventListener("click",function(event){
+    if (son){
+      ipcRenderer.send("SON-ON");
+  }
+  else{
+      ipcRenderer.send("SON-OFF");
+  }
+    ipcRenderer.send("setMusique",musique.currentTime);
+  });
+
+  document.getElementById("newGame").addEventListener("click",function(event){
+    if (son){
+      ipcRenderer.send("SON-ON");
+  }
+  else{
+      ipcRenderer.send("SON-OFF");
+  }
+    ipcRenderer.send("setMusique",musique.currentTime);
+  });
 
   document.getElementById('creditBtn').addEventListener("click",function(){ //si appuie sur le bouton crédits
     document.getElementById("theHead").style.display = "none";
@@ -65,7 +90,7 @@
 
     //Enlever ou remettre la musique  
     document.getElementById("musicBtn").addEventListener("click",function(){
-      if (musiqueJoue){
+      if (son){
         musique.pause();
         ipcRenderer.send('SON-OFF');
       }
@@ -73,7 +98,8 @@
         musique.play();
         ipcRenderer.send('SON-ON');
       }
-      musiqueJoue = !musiqueJoue;
+      son = !son;
+      console.log(musique.currentTime);
     });
 
     //Quand la musique est terminée, elle se relance

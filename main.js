@@ -2,6 +2,7 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 var son = true;
 var idEleve;
+var tempsMusique = 0;
 
 function createWindow () {
   // Create the browser window.
@@ -43,20 +44,29 @@ function createWindow () {
     mainWindow.loadFile('src/html/game.html'); //affiche le jeu
   })
 
+  //envoi l'id du joueur choisi 
   ipcMain.on("ask-id",function(event){
     event.sender.send("id",idEleve);
   })
   
+  //recupère l'id de l'élève choisi
   ipcMain.on("idEleve",function(event,args){
     idEleve = args[0];
   })
+
+  ipcMain.on("ask-Musique",function(event){
+    event.sender.send("musique",tempsMusique);
+  })
  
+  ipcMain.on("setMusique",function(event,args){
+    tempsMusique = args;
+  })
 
   ipcMain.on('retour-menu',function(){
     mainWindow.loadFile('index.html');//la fenetre devient index.html
   })
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+   mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
