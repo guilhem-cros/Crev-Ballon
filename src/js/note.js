@@ -46,11 +46,13 @@ suivant.addEventListener("click",function(event){
     });
 
     if (note == 1){
+        superNote.setAttribute("src","../../media/felicitation.png");
         superNote.style.height = "500px";
         superNote.style.width = "auto";
         encouragementNote.style.display = "none";
     }
     else {
+        encouragementNote.setAttribute("src","../../media/encouragement.png");
         encouragementNote.style.height = "500px";
         encouragementNote.style.width = "auto";
         superNote.style.display = "none"
