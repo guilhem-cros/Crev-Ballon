@@ -2,7 +2,6 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 var son = true;
 var idEleve;
-var tempsMusique = 0;
 
 function createWindow () {
   // Create the browser window.
@@ -36,12 +35,13 @@ function createWindow () {
     }
   })
 
-  ipcMain.on('Selectionner',function(){ //si reception de ce message par l'ipcMain depuis l'envoie d'un ipcRenderer
-  mainWindow.loadFile('src/html/selection.html'); //la fenetre affiché devient selection.html
-})
 
   ipcMain.on("jouer",function(event){
     mainWindow.loadFile('src/html/game.html'); //affiche le jeu
+  })
+
+  ipcMain.on("note",function(){
+    mainWindow.loadFile("./src/html/note.html");//pour noter
   })
 
   //envoi l'id du joueur choisi 
@@ -54,13 +54,6 @@ function createWindow () {
     idEleve = args[0];
   })
 
-  ipcMain.on("ask-Musique",function(event){
-    event.sender.send("musique",tempsMusique);
-  })
- 
-  ipcMain.on("setMusique",function(event,args){
-    tempsMusique = args;
-  })
 
   ipcMain.on('retour-menu',function(){
     mainWindow.loadFile('index.html');//la fenetre devient index.html

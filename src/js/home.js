@@ -1,15 +1,29 @@
-document.getElementById('creditBtn').addEventListener("click",function(){ //si appuie sur le bouton crédits
-  document.getElementById("theHead").style.display = "none";
-  document.getElementById("creditBtn").style.display = "none";
-  document.getElementById("statistiqueBtn").style.display = "none";
-  document.getElementById("newGame").style.display = "none";
-  document.getElementById("credits").style.display = "block";
-  document.getElementById("optionBtn").style.display = "none";
-  document.getElementById("backBtn").style.display = "block";
-  document.getElementById("quitBtn").style.display = "none";
-});
+//quitter l'appli
+  document.getElementById("quitBtn").addEventListener("click",function(){
+      ipcRenderer.send("quit");
+  });
 
- document.getElementById('optionBtn').addEventListener("click",function(){ //si appuie sur le bouton "Options"
+  document.getElementById("newGame").addEventListener("click",function(event){
+    if (son){
+      ipcRenderer.send("SON-ON");
+  }
+  else{
+      ipcRenderer.send("SON-OFF");
+  }
+  });
+
+  document.getElementById('creditBtn').addEventListener("click",function(){ //si appuie sur le bouton crédits
+    document.getElementById("theHead").style.display = "none";
+    document.getElementById("creditBtn").style.display = "none";
+    document.getElementById("statistiqueBtn").style.display = "none";
+    document.getElementById("newGame").style.display = "none";
+    document.getElementById("credits").style.display = "block";
+    document.getElementById("optionBtn").style.display = "none";
+    document.getElementById("backBtn").style.display = "block";
+    document.getElementById("quitBtn").style.display = "none";
+  });
+
+  document.getElementById('optionBtn').addEventListener("click",function(){ //si appuie sur le bouton "Options"
     document.getElementById("theHead").style.display = "none";
     document.getElementById("creditBtn").style.display = "none";
     document.getElementById("statistiqueBtn").style.display = "none";
@@ -30,7 +44,7 @@ document.getElementById('creditBtn').addEventListener("click",function(){ //si a
     document.getElementById("optionBtn").style.display = "block";
     document.getElementById("quitBtn").style.display = "block";
     document.getElementById("musicBtn").style.display = "none";
-});
+  });
 
   //Enlever ou remettre la musique  
   document.getElementById("musicBtn").addEventListener("click",function(){

@@ -1,7 +1,3 @@
-const Etudiant = require('../js/etudiant.js'); // <--- Classe Etudiant
-var musique = new Audio('../../sons/musiqueMenu.mp3'); // https://www.youtube.com/watch?v=xN2TVpsIo34&list=WL&index=3
-const {ipcRenderer} = require("electron");
-var fs = require("fs"); //<--- FileSystem commande
 var data = fs.readFileSync('stockage/listeEtudiant.json'); //lecture du fichier de stockage et enregistrement des données dans data
 var listEtudiant;
 var liste = document.getElementById("listEtudiant");
@@ -12,33 +8,6 @@ var boutonSuppAll = document.getElementById("supprimerAll");
 var ouiBtn = document.getElementById("oui");
 var annulerBtn = document.getElementById("annuler");
 var sectionReponse = document.getElementById("rep");
-
-
-
-jouerMusiqueMenu();
-
-function jouerMusiqueMenu(){ //gestion du son de l'appli
-ipcRenderer.send('SON'); //envoie du message vers le main
-
-ipcRenderer.on('SON-OFF',function(event){ // si reception de ce message (envoyé pas le main)
-  console.log('OFFmenu');
-  son = false;
-  musique.pause();
-});
-
-ipcRenderer.on('SON-ON',function(event){ //si reception de ce message 
-  console.log('ONmenu');
-  son = true;
-  musique.play();
-});
-
-    
-ipcRenderer.send('ask-Musique');
-ipcRenderer.on("musique",function(event,args){
-    musique.currentTime = args;
-});
-}
-
 
 
 
@@ -125,13 +94,8 @@ boutonSuppAll.addEventListener("click",function(event){
     });
 
     document.getElementById('backBtn').addEventListener("click",function(){ //si appuie sur retour
-        if (son){
-            ipcRenderer.send("SON-ON");
-        }
-        else{
-            ipcRenderer.send("SON-OFF");
-        }
-        ipcRenderer.send("retour-menu"); //envoie du message vers le main afin d'activer la fonction liée
+        loadPage('home',true,'index');
+        //ipcRenderer.send("retour-menu"); //envoie du message vers le main afin d'activer la fonction liée
     });
 
 
