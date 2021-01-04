@@ -90,9 +90,9 @@ document.addEventListener('mouseup', e => {
 /*
 à chaque fois qu'un ballon est crée (sans paramêtres), une image de notre liste d'image ainsi que des coordonne et une direction lui sont attribué aléatoirement
 Un ballon a des coordonnés où x correspond à l'absices et y correspond à l'ordonnés
-l'attribut "pasy" correspond à un pas/deplacement verticale
-l'attribut "pasx" correspond à un pas/deplacement horizontale
-les attributs "click" et "sortie" permette de connaître l'état du ballon (si il est sortie de l'écran ou cliquer par l'utilisateur)
+l'attribut "pasy" correspond à un pas/deplacement vertical
+l'attribut "pasx" correspond à un pas/deplacement horizontal
+les attributs "click" et "sortie" permettent de connaître l'état du ballon (si il est sortie de l'écran ou cliquer par l'utilisateur)
 */
 
 class ballon{
@@ -215,7 +215,8 @@ function actionMenue(){
     }
     if(canvas.width/3<mx && mx<(canvas.width*2)/3){
         if((canvas.height/4+canvas.width/4)<my && my<(canvas.height/4+canvas.width/3)){
-            document.location.href="./note.html"; 
+            ipcRenderer.send("note");
+            //document.location.href="./note.html"; 
         }
     }
 }

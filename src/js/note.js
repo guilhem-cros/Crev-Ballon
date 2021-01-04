@@ -1,4 +1,3 @@
-const Etudiant = require('../js/etudiant.js'); // <--- Classe Etudiant
 const {ipcRenderer} = require("electron");
 var fs = require("fs"); //<--- FileSystem commande
 const { listenerCount } = require('process');
@@ -10,6 +9,7 @@ var note;
 var superNote = document.getElementById("super");
 var encouragementNote = document.getElementById("encouragement");
 var lienmenu = document.getElementById("lienmenu");
+
 
 
 superNote.addEventListener("click",function(event){
@@ -60,6 +60,7 @@ suivant.addEventListener("click",function(event){
     lienmenu.style.display = "block";
     suivant.style.display = "none";
 });
+
 
 
 function compare(a, b) {

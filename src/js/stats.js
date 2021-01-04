@@ -1,15 +1,16 @@
-const Etudiant = require('../js/etudiant.js'); // <--- Classe Etudiant
-const {ipcRenderer} = require("electron");
-var fs = require("fs"); //<--- FileSystem commande
 var data = fs.readFileSync('stockage/listeEtudiant.json'); //lecture du fichier de stockage et enregistrement des données dans data
 var listEtudiant;
 var liste = document.getElementById("listEtudiant");
 var idEleve;
+var son = true;
 var boutonSupp = document.getElementById("supprimer");
 var boutonSuppAll = document.getElementById("supprimerAll");
 var ouiBtn = document.getElementById("oui");
 var annulerBtn = document.getElementById("annuler");
 var sectionReponse = document.getElementById("rep");
+
+
+
 actualiser();
 function actualiser(){
     var chaine = "";
@@ -93,7 +94,8 @@ boutonSuppAll.addEventListener("click",function(event){
     });
 
     document.getElementById('backBtn').addEventListener("click",function(){ //si appuie sur retour
-        ipcRenderer.send("retour-menu"); //envoie du message vers le main afin d'activer la fonction liée
+        loadPage('home',true,'index');
+        //ipcRenderer.send("retour-menu"); //envoie du message vers le main afin d'activer la fonction liée
     });
 
 
