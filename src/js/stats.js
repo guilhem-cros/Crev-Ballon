@@ -20,7 +20,7 @@ function actualiser(){
     for(etudiant of listEtudiant){ //pour tous les joueurs enregistrés : on affiche leurs données
         chaine = chaine + "<div class=\"eleve\" id=\"" + i + "\">" + etudiant.nom + " " + etudiant.prenom + " <div class=\"notes\">";
         for(note in etudiant.listNotes){
-            chaine = chaine +  "<img src=\"../../media/note" + etudiant.listNotes[note] + ".png\" height=\"40px\" width=\"40px\"></img>";
+            chaine = chaine +  "<img src=\"./media/note" + etudiant.listNotes[note] + ".png\" height=\"40px\" width=\"40px\"></img>";
         }
         chaine = chaine + "</div>" + "</div>";
         i++;

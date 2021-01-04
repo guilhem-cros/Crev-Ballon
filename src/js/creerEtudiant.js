@@ -25,5 +25,5 @@ else {
 })
 
 document.getElementById('backBtn').addEventListener("click",function(){ //si appuie sur retour
-    loadPage('home',true,'index');
+    loadPage('selection',true,'stats');
 });

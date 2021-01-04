@@ -16,8 +16,8 @@ var menuPause = ['../../media/menu2.png','../../media/menu3.png','../../media/me
 let indiceMenu = 0;
 var CouleurActuel = 0;
 var tableauBallon = new Array();
-var speed = canvas.width/600;
-var speedMax = canvas.width/550;
+var speed = canvas.width/1000;
+var speedMax = canvas.width/800;
 let i = 0;
 let nbBallon = 0;
 let nbBallonMax = 7;
@@ -210,13 +210,21 @@ function actionMenue(){
             else {
                 ipcRenderer.send('SON-OFF');
             }
+            //envoie des informations pas rapport au son vers le main, afin de prendre en compte les changements dans le reste de l'appli
             document.location.href="../../index.html";
         }
     }
     if(canvas.width/3<mx && mx<(canvas.width*2)/3){
         if((canvas.height/4+canvas.width/4)<my && my<(canvas.height/4+canvas.width/3)){
             ipcRenderer.send("note");
-            //document.location.href="./note.html"; 
+            //document.location.href="./note.html";
+            if (son){
+                ipcRenderer.send('SON-ON');
+            }
+            else {
+                ipcRenderer.send('SON-OFF');
+            } 
+            //envoie des informations pas rapport au son vers le main, afin de prendre en compte les changements dans le reste de l'appli
         }
     }
 }
@@ -231,18 +239,18 @@ function changementIndice(){
 
 function setDifficulte(){
     if (indiceMenu==0){
-        speed = canvas.width/600;
-        speedMax = canvas.width/550;
+        speed = canvas.width/1000;
+        speedMax = canvas.width/800;
         largeurBallon = (canvas.height+canvas.width)/12;
         hauteurBallon = largeurBallon *1.25;    
     }else if (indiceMenu==1){
-        speed = canvas.width/500;
-        speedMax = canvas.width/450;
+        speed = canvas.width/800;
+        speedMax = canvas.width/600;
          largeurBallon = (canvas.height+canvas.width)/14;
          hauteurBallon = largeurBallon *1.25;
     }else{
-        speed = canvas.width/350;
-        speedMax = canvas.width/300;
+        speed = canvas.width/600;
+        speedMax = canvas.width/400;
          largeurBallon = (canvas.height+canvas.width)/16;
          hauteurBallon = largeurBallon *1.25;
     }

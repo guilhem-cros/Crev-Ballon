@@ -1,0 +1,72 @@
+body {
+    background: #54A7FD;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 2em;
+    text-align: center;
+    margin-top: 2em;
+  }
+  h1{
+    margin: auto;
+    color: #FF8A2F;
+    font-size: 2em;
+    font-family: "Courier New";
+    font-weight: bold;
+  }
+
+  #desc{
+      display: inline-flex;
+  }
+  #sup, #enc{
+      flex: 1;
+      width: 400px;
+    font-size: 25px;
+  }
+  #sup{
+      margin-right: 15%;
+  }
+#enc{
+    margin-left: 15%;
+}
+  #encouragement, #super{
+      margin: 4%;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      border: solid orange;
+      border-radius: 5px;
+      padding: 1%;
+  }
+
+  #imageFinale{
+     vertical-align: middle;
+     margin-bottom: 0;
+  }
+
+  #nextBtn, #lienmenu{
+    position: fixed;
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid goldenrod;
+    border-radius: 7px;
+    background-color: gold;
+    color: orangeRed;
+    font-weight: bold;
+    font-family: "Courier New";
+    height: 1.2em;
+    
+  }
+
+  #nextBtn{
+    top: 92%;
+    font-size: 35px;
+    width: 5.5em;
+    left: 82%;
+  }
+
+  #lienmenu{
+      top: 90%;
+      font-size: 50px;
+      width: 3.5em;
+      left: 83%;
+  }
+

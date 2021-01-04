@@ -8,18 +8,28 @@ var suivant = document.getElementById("nextBtn");
 var note;
 var superNote = document.getElementById("super");
 var encouragementNote = document.getElementById("encouragement");
+var cons = document.getElementById("consignes");
+var superLeg = document.getElementById("sup");
+var encouragementLeg = document.getElementById("enc");
 var lienmenu = document.getElementById("lienmenu");
+var finalPic = document.getElementById("imageFinale");
+var titre = document.getElementById("title");
+var body = document.getElementById("note");
 
 
 
 superNote.addEventListener("click",function(event){
     note = 1;
     suivant.style.display = "block";
+    superNote.style.backgroundColor = "#001AE3";
+    encouragementNote.style.backgroundColor="#54A7FD";
 });
 
 encouragementNote.addEventListener("click",function(event){
     note = 2;
     suivant.style.display = "block";
+    encouragementNote.style.backgroundColor="#001AE3";
+    superNote.style.backgroundColor="#54A7FD";
 });
 
 ipcRenderer.send("ask-id");
@@ -46,20 +56,24 @@ suivant.addEventListener("click",function(event){
     });
 
     if (note == 1){
-        superNote.setAttribute("src","../../media/felicitation.png");
-        superNote.style.height = "500px";
-        superNote.style.width = "auto";
-        encouragementNote.style.display = "none";
+        finalPic.setAttribute("src","../../media/felicitation.png");
+        
     }
     else {
-        encouragementNote.setAttribute("src","../../media/encouragement.png");
-        encouragementNote.style.height = "500px";
-        encouragementNote.style.width = "auto";
-        superNote.style.display = "none"
+        finalPic.setAttribute("src","../../media/encouragement.png");
     }
+    finalPic.style.display="block";
+    body.style.margin = "0";
+    superNote.style.display = "none";
+    encouragementNote.style.display = "none";
+    cons.style.display="none";
+    superLeg.style.display="none";
+    encouragementLeg.style.display="none";
     lienmenu.style.display = "block";
     suivant.style.display = "none";
+    titre.style.display="none";
 });
+
 
 
 

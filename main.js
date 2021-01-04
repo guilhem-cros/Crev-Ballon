@@ -16,7 +16,7 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
-  //récupère l'info si musique ou pas
+  //récupère l'info si son actif ou pas
   ipcMain.on('SON-ON',function(event){
     son = true;
   });
@@ -25,7 +25,7 @@ function createWindow () {
     son = false;
   });
 
-  //quand on start le jeu, on demande l'info au main s'il y a le son ou pas
+  //quand on start le jeu, on demande l'info au main afin de savoir si le son est activé
   ipcMain.on('SON',function(event){
     if (son){
       event.sender.send('SON-ON');
