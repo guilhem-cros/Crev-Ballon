@@ -1,150 +1,120 @@
-body {
-    background: #54A7FD;
-    color: #fff;
-    font-family: sans-serif;
-    font-size: 2em;
-    text-align: center;
-    margin-top: 2em;
-  }
-  canvas {
-    border: solid .2em #fff;
-    height: 90vh;
-  }
-  h1{
-    margin: auto;
-    color: #FF8A2F;
-    font-size: 2em;
-    font-family: "Courier New";
-    font-weight: bold;
-  }
 
-  #box {
-    display: flex;
-    font-size: 1.5em;
-    font-family: 'Trebuchet MS';
-    font-weight: medium;
-    margin-right: 14%;
-    margin-left: 14%;
-    background-color: #FF8A2F;
-  }
-  #one, #two {
-    border: solid orangered 2px;
-    flex: 1;
-  }
+#box {
+  display: flex;
+  font-size: 1.5em;
+  font-family: 'Trebuchet MS';
+  font-weight: medium;
+  margin-right: 14%;
+  margin-left: 14%;
+  background-color: #FF8A2F;
+}
+#one, #two {
+  border: solid orangered 2px;
+  flex: 1;
+}
 
-  .notes{
-      text-align: right;
-  }
+.notes{
+    text-align: right;
+}
 
-  #listEtudiant{
-    display: flex;
-    flex-direction: column;
-    font-size: 1em;
-    font-family: 'Trebuchet MS';
-    margin-left: 17%;
-    text-align: left;
-    margin-right: 17%;
-  }
+#listEtudiant{
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  font-family: 'Trebuchet MS';
+  margin-left: 17%;
+  text-align: left;
+  margin-right: 17%;
+}
 
 .eleve{
-  padding: 0.5%;
-  margin: 1%;
-  display: inline-flex;
-  border: solid orangered 2px;
-  border-radius: 10px;
-  background-color: orange;
+padding: 0.5%;
+margin: 1%;
+display: inline-flex;
+border: solid orangered 2px;
+border-radius: 10px;
+background-color: orange;
 }
 .notes{
-  text-align: right;
-  flex: 1;
-  display : inline;
+text-align: right;
+flex: 1;
+display : inline;
 }
 
-  #backBtn{
-    text-align: center;
-    position: fixed;
-    top: 87%;
-    left: 1%;
-    border: 2px solid goldenrod;
-    border-radius: 7px;
-    background-color: gold;
-    color: orangeRed;
-    font-size: 45px;
-    font-weight: bold;
-    font-family: "Courier New";
-    height: 1.2em;
-    width: 4em;
-    margin: 20px auto;
-  }
+#backBtn{
+  position: fixed;
+  top: 87%;
+  left: 1%;
+}
 
-  button, #creerBtn{
-    line-height: 1em;
-    height: 2.2em;
-    border: 2px solid goldenrod;
-    border-radius: 7px;
-    background-color: gold;
-    color: orangeRed;
-    font-size: 30px;
-    font-weight: bold;
-    font-family: "Courier New";
-    margin: 1%;
-    width: 6em;
-  }
+button, #creerBtn{
+  line-height: 1em;
+  height: 2.2em;
+  border: 2px solid goldenrod;
+  border-radius: 7px;
+  background-color: gold;
+  color: orangeRed;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Courier New";
+  margin: 1%;
+  width: 6em;
+}
 
-  #question{
-    font-size: 0.8em;
-    line-height: 1em;
-    width: 7em;
-    border: 2px solid orangered;
-    background-color: orange;
-    border-radius: 5px;
-    margin-left: 1%;
-    margin-bottom: 10px;
-    margin-top: 15px;
-  }
+#question{
+  font-size: 0.8em;
+  line-height: 1em;
+  width: 7em;
+  border: 2px solid orangered;
+  background-color: orange;
+  border-radius: 5px;
+  margin-left: 1%;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
 
-  #creerBtn{
-    width: 5.5em;
-    line-height: 1.2em;
-    font-size: 35px;
-  }
+#creerBtn{
+  width: 5.5em;
+  line-height: 1.2em;
+  font-size: 35px;
+}
 
-  a{
-    text-decoration: none;
-    color: orangered;
-  }
+a{
+  text-decoration: none;
+  color: orangered;
+}
 
-  #jouer {
-    font-size: 50px;
-    width: 4em;
-    height: 1.8em;
-  }
+#jouer {
+  font-size: 50px;
+  width: 4em;
+  height: 1.8em;
+}
 
-  .static{
-    position: fixed;
-    top: 65%;
-    left: 83%;
-    width: 60%;
-  }
+.static{
+  position: fixed;
+  top: 65%;
+  left: 83%;
+  width: 60%;
+}
 
-  #rep{
-    display: flex;
-    flex-direction: column;
-  }
+#rep{
+  display: flex;
+  flex-direction: column;
+}
 
-  #oui, #annuler{
-    flex:1;
-    line-height: 1em;
-    height: 1.5em;
-    width: 6em;
-    margin-right: 100%;
-    margin-bottom: 10px;
-  }
+#oui, #annuler{
+  flex:1;
+  line-height: 1em;
+  height: 1.5em;
+  width: 6em;
+  margin-right: 100%;
+  margin-bottom: 10px;
+}
 
-  #supprimer{
-    height: 2.3em;
-  }
+#supprimer{
+  height: 2.3em;
+}
 
 
-  
-  
+
+

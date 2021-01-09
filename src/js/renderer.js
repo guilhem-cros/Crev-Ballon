@@ -16,8 +16,8 @@ var menuPause = ['../../media/menu2.png','../../media/menu3.png','../../media/me
 let indiceMenu = 0;
 var CouleurActuel = 0;
 var tableauBallon = new Array();
-var speed = canvas.width/600;
-var speedMax = canvas.width/550;
+var speed = canvas.width/1000;
+var speedMax = canvas.width/800;
 let i = 0;
 let nbBallon = 0;
 let nbBallonMax = 7;
@@ -90,9 +90,9 @@ document.addEventListener('mouseup', e => {
 /*
 à chaque fois qu'un ballon est crée (sans paramêtres), une image de notre liste d'image ainsi que des coordonne et une direction lui sont attribué aléatoirement
 Un ballon a des coordonnés où x correspond à l'absices et y correspond à l'ordonnés
-l'attribut "pasy" correspond à un pas/deplacement verticale
-l'attribut "pasx" correspond à un pas/deplacement horizontale
-les attributs "click" et "sortie" permette de connaître l'état du ballon (si il est sortie de l'écran ou cliquer par l'utilisateur)
+l'attribut "pasy" correspond à un pas/deplacement vertical
+l'attribut "pasx" correspond à un pas/deplacement horizontal
+les attributs "click" et "sortie" permettent de connaître l'état du ballon (si il est sortie de l'écran ou cliquer par l'utilisateur)
 */
 
 class ballon{
@@ -210,12 +210,21 @@ function actionMenue(){
             else {
                 ipcRenderer.send('SON-OFF');
             }
+            //envoie des informations pas rapport au son vers le main, afin de prendre en compte les changements dans le reste de l'appli
             document.location.href="../../index.html";
         }
     }
     if(canvas.width/3<mx && mx<(canvas.width*2)/3){
         if((canvas.height/4+canvas.width/4)<my && my<(canvas.height/4+canvas.width/3)){
-            document.location.href="./note.html"; 
+            ipcRenderer.send("note");
+            //document.location.href="./note.html";
+            if (son){
+                ipcRenderer.send('SON-ON');
+            }
+            else {
+                ipcRenderer.send('SON-OFF');
+            } 
+            //envoie des informations pas rapport au son vers le main, afin de prendre en compte les changements dans le reste de l'appli
         }
     }
 }
@@ -230,18 +239,18 @@ function changementIndice(){
 
 function setDifficulte(){
     if (indiceMenu==0){
-        speed = canvas.width/600;
-        speedMax = canvas.width/550;
+        speed = canvas.width/1000;
+        speedMax = canvas.width/800;
         largeurBallon = (canvas.height+canvas.width)/12;
         hauteurBallon = largeurBallon *1.25;    
     }else if (indiceMenu==1){
-        speed = canvas.width/500;
-        speedMax = canvas.width/450;
+        speed = canvas.width/800;
+        speedMax = canvas.width/600;
          largeurBallon = (canvas.height+canvas.width)/14;
          hauteurBallon = largeurBallon *1.25;
     }else{
-        speed = canvas.width/350;
-        speedMax = canvas.width/300;
+        speed = canvas.width/600;
+        speedMax = canvas.width/400;
          largeurBallon = (canvas.height+canvas.width)/16;
          hauteurBallon = largeurBallon *1.25;
     }

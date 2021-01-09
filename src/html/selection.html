@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Jeu_enfant</title>
-        <link rel="stylesheet" href="../css/stats.css">
-    </head>
-    <body>
-        <h1>Choix du joueur</h1>
-        <br>
-        <div id="box">
-            <div id="one">Joueurs</div> 
-            <div id="two">Dernières notes</div>
+<div>
+    <h1>Choix du joueur</h1>
+    <br />
+    <div id="box">
+        <div id="one">Joueurs</div> 
+        <div id="two">Dernières notes</div>
+    </div>
+    <div id="listEtudiant">
+    </div>
+    <div class="static">
+        <div id="creerBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" style="display: block;"><a onclick="loadPage('formulaireEtudiant','creerEtudiant','form');">Nouveau joueur</a></div>
+        <div id="play">
+            <button id="jouer" style="display:none;" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'">Jouer</button>
         </div>
-        <div id="listEtudiant">
-        </div>
-        <div class="static">
-            <div id="creerBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" style="display: block;"><a href="formulaireEtudiant.html">Nouveau joueur</a></div>
-            <div id=play>
-                <button id="jouer" style="display:none;" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'">Jouer</button>
-            </div>
-        </div>
-        <div id="backBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'"  style="display: block; background-color: gold;">Retour</div>
-        <script src="../js/choisirEtudiant.js">
-        </script>
-    </body>
-</html>
+    </div>
 
+    <div id="backBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'"  style="display: block; background-color: gold;">Retour</div>
+</div>
+<style>
+    
+</style>

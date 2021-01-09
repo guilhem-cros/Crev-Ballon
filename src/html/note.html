@@ -3,14 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>Jeu_enfant</title>
-        <link rel="stylesheet" href="../css/stats.css">
+        <link rel="stylesheet" href="../css/note.css">
     </head>
-    <body>
-        <h1>Score</h1>
-        <br>
+    <body id="note">
+        <h1 id="title">Score</h1>
+        <p id="consignes">Sélectionnez la note que vous souhaitez donner au joueur : </p>
         <div id="images">
-            <img src="../../media/note1.png" id="super" height="300px" width="300px">
-            <img src="../../media/note2.png" id="encouragement" height="300px" width="300px">
+            <img src="../../media/note1.png" id="super" height="400px" width="400px">
+            <img src="../../media/note2.png" id="encouragement" height="400px" width="400px">
+            <img src="../../media/felicitation.png" id="imageFinale" height = "800px" width="auto" style="display: none;">
+        </div>
+        <div id='desc'>
+            <p id="sup">Super !</p>
+            <p id="enc">Presque !</p>
         </div>
         <a href="../../index.html" id="lienmenu" style="display: none;">Menu</a>
         <div id="nextBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'"  style="display: none; background-color: gold;">Continuer</div>

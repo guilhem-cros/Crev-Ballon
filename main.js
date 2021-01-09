@@ -16,7 +16,7 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
-  //récupère l'info si musique ou pas
+  //récupère l'info si son actif ou pas
   ipcMain.on('SON-ON',function(event){
     son = true;
   });
@@ -25,7 +25,7 @@ function createWindow () {
     son = false;
   });
 
-  //quand on start le jeu, on demande l'info au main s'il y a le son ou pas
+  //quand on start le jeu, on demande l'info au main afin de savoir si le son est activé
   ipcMain.on('SON',function(event){
     if (son){
       event.sender.send('SON-ON');
@@ -35,28 +35,31 @@ function createWindow () {
     }
   })
 
-  ipcMain.on('Selectionner',function(){ //si reception de ce message par l'ipcMain depuis l'envoie d'un ipcRenderer
-  mainWindow.loadFile('src/html/selection.html'); //la fenetre affiché devient selection.html
-})
 
   ipcMain.on("jouer",function(event){
     mainWindow.loadFile('src/html/game.html'); //affiche le jeu
   })
 
+  ipcMain.on("note",function(){
+    mainWindow.loadFile("./src/html/note.html");//pour noter
+  })
+
+  //envoi l'id du joueur choisi 
   ipcMain.on("ask-id",function(event){
     event.sender.send("id",idEleve);
   })
   
+  //recupère l'id de l'élève choisi
   ipcMain.on("idEleve",function(event,args){
     idEleve = args[0];
   })
- 
+
 
   ipcMain.on('retour-menu',function(){
     mainWindow.loadFile('index.html');//la fenetre devient index.html
   })
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+   mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
